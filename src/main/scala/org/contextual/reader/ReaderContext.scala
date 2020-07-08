@@ -21,7 +21,7 @@ trait UserRepo[F[_]] {
 }
 
 object UserRepo {
-  def apply[F[_]: Applicative]: UserRepo[F] = (id: String) => Applicative[F].pure(s"Found user with id = $id")
+  def apply[F[_]: Applicative]: UserRepo[F] = (id: String) => Applicative[F].pure(s"Found user with id: $id.")
 }
 
 trait WorkRepo[F[_]] {
@@ -30,7 +30,8 @@ trait WorkRepo[F[_]] {
 
 object WorkRepo {
 
-  def apply[F[_]: Applicative]: WorkRepo[F] = (work: String, userId: String) => Applicative[F].pure(s"Work $work assigned to user with id $userId")
+  def apply[F[_]: Applicative]: WorkRepo[F] =
+    (work: String, userId: String) => Applicative[F].pure(s"""Work "$work" assigned to user with id: $userId.""")
 }
 
 trait ConfigContext[F[_]] {
